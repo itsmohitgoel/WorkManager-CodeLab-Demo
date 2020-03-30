@@ -19,12 +19,15 @@ package com.example.background
 import android.app.Application
 import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
+import androidx.work.WorkManager
 
 
 class BlurViewModel(application: Application) : AndroidViewModel(application) {
 
     internal var imageUri: Uri? = null
     internal var outputUri: Uri? = null
+
+    private val workManager = WorkManager.getInstance(application)
 
     /**
      * Create the WorkRequest to apply the blur and save the resulting image
