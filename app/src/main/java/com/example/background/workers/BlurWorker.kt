@@ -12,6 +12,7 @@ class BlurWorker(ctx : Context, parames: WorkerParameters) : Worker(ctx, parames
     override fun doWork(): Result {
         val appContext = applicationContext
 
+        makeStatusNotification("Blurring image", appContext)
         try {
             val picture = BitmapFactory.decodeResource(applicationContext.resources, R.drawable.test)
 
