@@ -2,6 +2,7 @@ package com.example.background.workers
 
 import android.content.Context
 import android.graphics.BitmapFactory
+import androidx.work.Data
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.example.background.R
@@ -29,4 +30,6 @@ class BlurWorker(ctx : Context, parames: WorkerParameters) : Worker(ctx, parames
             return Result.failure()
         }
     }
+
+
 }
