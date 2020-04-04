@@ -7,12 +7,13 @@ import android.text.TextUtils
 import androidx.work.Data
 import androidx.work.Worker
 import androidx.work.WorkerParameters
+import androidx.work.workDataOf
 import com.example.background.KEY_IMAGE_URI
 import com.example.background.R
 import timber.log.Timber
 import java.lang.IllegalArgumentException
 
-class BlurWorker(ctx : Context, parames: WorkerParameters) : Worker(ctx, parames) {
+class BlurWorker(ctx: Context, parames: WorkerParameters) : Worker(ctx, parames) {
 
     override fun doWork(): Result {
         val appContext = applicationContext
@@ -38,7 +39,8 @@ class BlurWorker(ctx : Context, parames: WorkerParameters) : Worker(ctx, parames
             // write bitmap to a temp file
             makeStatusNotification("Output is $outputUri", appContext)
 
-            Result.success()
+            val outputData = workDataOf(KEY_IMAGE_URI to outputUri.toString())
+            Result.success(outputData)
         } catch (throwable: Throwable) {
             Timber.e(throwable, "Error applying in blur")
             Result.failure()
