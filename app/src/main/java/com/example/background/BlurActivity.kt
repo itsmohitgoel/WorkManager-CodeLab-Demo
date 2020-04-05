@@ -41,7 +41,7 @@ class BlurActivity : AppCompatActivity() {
         val imageUriExtra = intent.getStringExtra(KEY_IMAGE_URI)
         viewModel.setImageUri(imageUriExtra)
         viewModel.imageUri?.let { imageUri ->
-            Glide.with(this).load(imageUri).into(binding.imageView)
+            GlideApp.with(this).load(imageUri).into(binding.imageView)
         }
 
         binding.goButton.setOnClickListener { viewModel.applyBlur(blurLevel) }
