@@ -50,6 +50,12 @@ class BlurViewModel(application: Application) : AndroidViewModel(application) {
         val saveImageRequest = OneTimeWorkRequestBuilder<SaveImageToFileWorker>()
                 .build()
 
+        var continuation  = workManager.beginWith(cleanUpRequest)
+        continuation = continuation.then(blurRequest)
+        continuation = continuation.then(saveImageRequest)
+
+        // Actually start the work
+        continuation.enqueue()
     }
 
     private fun uriOrNull(uriString: String?): Uri? {
