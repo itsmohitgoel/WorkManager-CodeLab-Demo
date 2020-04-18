@@ -108,6 +108,14 @@ class BlurActivity : AppCompatActivity() {
             val workInfo = listOfWorkInfo[0]
             if (workInfo.state.isFinished) {
                 showWorkFinished()
+
+                val outputImageUri = workInfo.outputData.getString(KEY_IMAGE_URI)
+
+                // If there is an output file show "See File" button
+                if (!outputImageUri.isNullOrEmpty()) {
+                    viewModel.setOutputUri(outputImageUri as String)
+                    see_file_button.visibility = View.VISIBLE
+                }
             } else {
                 showWorkInProgress()
             }

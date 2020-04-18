@@ -34,7 +34,7 @@ class SaveImageToFileWorker(ctx: Context, params: WorkerParameters) : Worker(ctx
 
             if (!imageUrl.isNullOrEmpty()) {
                 val output = workDataOf(KEY_IMAGE_URI to imageUrl)
-                Result.success()
+                Result.success(output)
             } else {
                 Timber.e("Writing to MediaStore Failed")
                 Result.failure()
