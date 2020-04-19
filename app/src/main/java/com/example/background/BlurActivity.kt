@@ -59,6 +59,8 @@ class BlurActivity : AppCompatActivity() {
             }
         }
 
+        cancel_button.setOnClickListener { viewModel.cancelWork() }
+
         setUpObservers()
     }
 
