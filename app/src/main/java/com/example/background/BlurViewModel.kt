@@ -62,7 +62,13 @@ class BlurViewModel(application: Application) : AndroidViewModel(application) {
         }
 
 
+        // Create charging constraint
+        val constraints = Constraints.Builder()
+                .setRequiresCharging(true)
+                .build()
+
         val saveImageRequest = OneTimeWorkRequestBuilder<SaveImageToFileWorker>()
+                .setConstraints(constraints)
                 .addTag(TAG_OUTPUT)
                 .build()
         continuation = continuation.then(saveImageRequest)
